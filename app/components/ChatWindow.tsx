@@ -44,19 +44,19 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed bottom-20 right-6 w-80 h-96 bg-[#1A1C22] shadow-2xl rounded-xl p-3 flex flex-col text-gray-100">
+    <div className="fixed bottom-25 right-6 w-80 h-96 bg-[#1F2026] shadow-[0_0_20px_rgba(97,95,255,0.8)] rounded-xl p-3 flex flex-col text-gray-100">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
-        <div className="font-semibold text-lg text-white">SupportBot</div>
+        <div className="font-semibold text-lg text-white drop-shadow-md">SupportBot</div>
         <button 
           onClick={onClose} 
-          className="text-xs px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-gray-200 transition"
+          className="text-xs px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-gray-200 shadow-md transition"
         >
           Close
         </button>
       </div>
 
-      {/* Message area */}
+      {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-2 p-1">
         {messages.map(m => <Message key={m.id} m={m} />)}
       </div>
@@ -68,12 +68,12 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') send(); }}
           placeholder="Ask something..."
-          className="flex-1 bg-[#2A2C33] placeholder-gray-400 text-gray-100 border-none p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+          className="flex-1 bg-[#2A2C33] placeholder-gray-300 text-gray-100 border-none p-2 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
         />
         <button 
           disabled={loading} 
           onClick={send} 
-          className="bg-gradient-to-br from-purple-600 to-indigo-500 text-white px-4 rounded-lg hover:scale-105 transition-transform"
+          className="bg-gradient-to-br from-purple-600 to-indigo-500 text-white px-4 rounded-lg shadow-lg hover:scale-105 transition-transform"
         >
           Send
         </button>
