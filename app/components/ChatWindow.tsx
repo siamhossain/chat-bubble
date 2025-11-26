@@ -3,8 +3,15 @@ import { useState, useRef, useEffect } from 'react';
 import Message from './Message';
 import { v4 as uuidv4 } from 'uuid';
 
+type MessageType = {
+  id: string;
+  from: string;
+  text: string;
+  time: string;
+};
+
 export default function ChatWindow({ onClose }: { onClose: () => void }) {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -45,7 +52,6 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed bottom-25 right-6 w-80 h-96 bg-[#1F2026] shadow-[0_0_20px_rgba(97,95,255,0.8)] rounded-xl p-3 flex flex-col text-gray-100">
-      {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <div className="font-semibold text-lg text-white drop-shadow-md">SupportBot</div>
         <button 
@@ -56,12 +62,10 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
         </button>
       </div>
 
-      {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-2 p-1">
         {messages.map(m => <Message key={m.id} m={m} />)}
       </div>
 
-      {/* Input */}
       <div className="mt-2 flex gap-2">
         <input
           value={input}

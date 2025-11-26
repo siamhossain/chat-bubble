@@ -1,5 +1,13 @@
 'use client';
-export default function Message({ m }) {
+
+type MessageType = {
+  id: string;
+  from: string;
+  text: string;
+  time: string;
+};
+
+export default function Message({ m }: { m: MessageType }) {
   return (
     <div className={`flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
       <div className={`max-w-[80%] p-2 rounded-lg ${m.from === 'user' ? 'bg-black text-white' : 'bg-gray-100 text-black'}`}>
